@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(HomeContent());
+import 'list/list_demo.dart';
+
+void main() => runApp(ListDemo());
 
 class Home extends StatelessWidget {
   @override
