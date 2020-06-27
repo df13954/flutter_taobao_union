@@ -1,8 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/list/grid_view.dart';
 
+import 'line/cus_view.dart';
 import 'list/list_demo.dart';
 
-void main() => runApp(ListDemo());
+void main() => runApp(Home4());
+
+class Home4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('demo'),
+        ),
+        body: Stack(
+          children: <Widget>[
+            //类似于margin left  top
+            Positioned(
+              child: IconContainer(
+                Icons.save,
+                size: 30,
+                color: Colors.blue,
+              ),
+              left: 20,
+              top: 100,
+            ),
+            Align(
+              child: Image.network(
+                "https://upload-images.jianshu.io/upload_images/16293134-e1179189de4cf3de?imageMogr2/auto-orient/strip|imageView2/2/w/640",
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
+              alignment: Alignment.topCenter,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Home3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('demo'),
+        ),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              child: IconContainer(
+                Icons.save,
+                size: 30,
+                color: Colors.blue,
+              ),
+              flex: 2,
+            ),
+            Expanded(
+              flex: 3,
+              child: IconContainer(
+                Icons.home,
+                size: 30,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Home2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('demo'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconContainer(
+              Icons.save,
+              size: 30,
+              color: Colors.blue,
+            ),
+            IconContainer(
+              Icons.home,
+              size: 30,
+              color: Colors.red,
+            ),
+            IconContainer(
+              Icons.close,
+              size: 30,
+              color: Colors.yellow,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class Home extends StatelessWidget {
   @override
