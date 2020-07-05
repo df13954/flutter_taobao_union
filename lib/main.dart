@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_categories_entity.dart';
+import 'package:toast/toast.dart';
 
 void main() {
   runApp(new MyApp());
@@ -75,11 +76,23 @@ class _MyHomePageState extends State<MyHomePage> {
           shrinkWrap: true,
           itemCount: category.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text("id->  " + category[index].id.toString()),
-              subtitle: Text(category[index].title),
+            return GestureDetector(
+              child: ListTile(
+                title: Text("id->  " + category[index].id.toString()),
+                subtitle: Text(category[index].title),
+              ),
+              onTap: () {
+                setState(() {
+                  itemClick(index);
+                });
+              },
             );
           }),
     );
+  }
+
+  void itemClick(int index) {
+    var msg = category[index].title;
+    Toast.show("click $msg", context);
   }
 }
