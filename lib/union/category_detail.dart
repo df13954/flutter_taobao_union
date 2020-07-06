@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_category_detail_entity.dart';
 import 'package:flutterapp/page_info/ScreenArguments.dart';
+import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
 
 class CategoryDetail extends StatelessWidget {
@@ -96,8 +97,56 @@ class _MyDetailState extends State<MyCategoryDetail> {
                       ),
                     ),
                     ListTile(
-                      title: Text(category[index].title),
+                      title: Text(category[index].title,style: TextStyle(
+                        color: ColorsUtil.hexColor(0x333333)
+                      ),),
                       subtitle: Text(category[index].itemDescription),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.fromLTRB(17, 0, 10, 0),
+                          child: Text(
+                            "补贴价  ¥" + category[index].zkFinalPrice,
+                            style: TextStyle(
+                              color: ColorsUtil.hexColor(0xFD4A43),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.fromLTRB(17, 5, 10, 0),
+                          child: Text(
+                            "优惠券数量:" +
+                                category[index].couponTotalCount.toString(),
+                            style: TextStyle(
+                              color: ColorsUtil.hexColor(0x9C9C9C),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                          child: Text(
+                            "付款: " + category[index].commissionRate,
+                            style: TextStyle(
+                                color: ColorsUtil.hexColor(0xFF8500),
+                                fontSize: 13),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.all(17),
+                          child: Text(category[index].couponStartTime),
+                        )
+                      ],
                     )
                   ],
                 ),
