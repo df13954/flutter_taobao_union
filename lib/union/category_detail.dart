@@ -97,9 +97,10 @@ class _MyDetailState extends State<MyCategoryDetail> {
                       ),
                     ),
                     ListTile(
-                      title: Text(category[index].title,style: TextStyle(
-                        color: ColorsUtil.hexColor(0x333333)
-                      ),),
+                      title: Text(
+                        category[index].title,
+                        style: TextStyle(color: ColorsUtil.hexColor(0x333333)),
+                      ),
                       subtitle: Text(category[index].itemDescription),
                     ),
                     Row(
@@ -107,7 +108,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
                         Container(
                           margin: EdgeInsets.fromLTRB(17, 0, 10, 0),
                           child: Text(
-                            "补贴价  ¥" + category[index].zkFinalPrice,
+                            "补贴价  ¥" + category[index].zkFinalPrice==null?"":category[index].zkFinalPrice,
                             style: TextStyle(
                               color: ColorsUtil.hexColor(0xFD4A43),
                               fontSize: 16,
@@ -132,7 +133,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
                         Container(
                           margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
                           child: Text(
-                            "付款: " + category[index].commissionRate,
+                            "付款: " + category[index].commissionRate==null?"":category[index].commissionRate,
                             style: TextStyle(
                                 color: ColorsUtil.hexColor(0xFF8500),
                                 fontSize: 13),
@@ -144,7 +145,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.all(17),
-                          child: Text(category[index].couponStartTime),
+                          child: Text(category[index].couponStartTime==null?"":category[index].couponStartTime),
                         )
                       ],
                     )

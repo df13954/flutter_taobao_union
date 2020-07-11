@@ -1,7 +1,7 @@
 // 动态的Widget
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/union/pages.dart';
+import 'package:flutterapp/union/tab_search.dart';
 
 import 'airplay.dart';
 import 'email.dart';
