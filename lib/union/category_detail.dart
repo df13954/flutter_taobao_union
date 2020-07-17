@@ -8,14 +8,17 @@ import 'package:flutterapp/page_info/ScreenArguments.dart';
 import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
 
+/// 分类之后的,详情页面
 class CategoryDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     print("arg ->> " + args.id);
-
-    return new MaterialApp(
-      home: new MyCategoryDetail(
+    return new Scaffold(
+      appBar: AppBar(
+        title: Text(args.title),
+      ),
+      body: new MyCategoryDetail(
         arg: args,
       ),
     );
@@ -66,10 +69,6 @@ class _MyDetailState extends State<MyCategoryDetail> {
     } catch (exception) {
       result = 'Failed getting IP address';
     }
-
-    // If the widget was removed from the tree while the message was in flight,
-    // we want to discard the reply rather than calling setState to update our
-    // non-existent appearance.
     if (!mounted) return;
 
     setState(() {
@@ -84,11 +83,13 @@ class _MyDetailState extends State<MyCategoryDetail> {
           shrinkWrap: true,
           itemCount: category.length,
           itemBuilder: (context, index) {
+            var itemData = category[index];
             return GestureDetector(
               child: Card(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                 child: Column(
                   children: <Widget>[
+                    //一个2:1图片显示
                     AspectRatio(
                       aspectRatio: 2 / 1,
                       child: Image.network(
@@ -96,34 +97,51 @@ class _MyDetailState extends State<MyCategoryDetail> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    ListTile(
-                      title: Text(
-                        category[index].title,
-                        style: TextStyle(color: ColorsUtil.hexColor(0x333333)),
+                    //标题,子标题
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                      child: ListTile(
+                        title: Text(
+                          category[index].title,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: ColorsUtil.hexColor(0x000814)),
+                        ),
+                        subtitle: Text(
+                          category[index].itemDescription,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: ColorsUtil.hexColor(0x666666)),
+                        ),
                       ),
-                      subtitle: Text(category[index].itemDescription),
                     ),
+                    //优惠的额度
                     Row(
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.fromLTRB(17, 0, 10, 0),
-                          child: Text(
-                            "补贴价  ¥" + category[index].zkFinalPrice==null?"":category[index].zkFinalPrice,
-                            style: TextStyle(
-                              color: ColorsUtil.hexColor(0xFD4A43),
-                              fontSize: 16,
+                          child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Text(
+                              itemData.couponAmount.toString() == null
+                                  ? ""
+                                  : itemData.couponAmount.toString() + "元优惠",
+                              style: TextStyle(
+                                color: ColorsUtil.hexColor(0xffffff),
+                                fontSize: 16,
+                              ),
                             ),
                           ),
+                          color: ColorsUtil.hexColor(0xFD4A43),
                         ),
                       ],
                     ),
                     Row(
                       children: <Widget>[
                         Container(
-                          margin: EdgeInsets.fromLTRB(17, 5, 10, 0),
+                          margin: EdgeInsets.fromLTRB(17, 5, 10, 10),
                           child: Text(
-                            "优惠券数量:" +
-                                category[index].couponTotalCount.toString(),
+                            itemData.volume.toString() + "人已经购买",
                             style: TextStyle(
                               color: ColorsUtil.hexColor(0x9C9C9C),
                               fontSize: 16,
@@ -131,24 +149,34 @@ class _MyDetailState extends State<MyCategoryDetail> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(2, 5, 0, 0),
+                          margin: EdgeInsets.fromLTRB(2, 5, 0, 10),
                           child: Text(
-                            "付款: " + category[index].commissionRate==null?"":category[index].commissionRate,
+                            "券后价:" +
+                                (double.parse(itemData.zkFinalPrice) -
+                                        itemData.couponAmount)
+                                    .toStringAsFixed(2)
+                                    .toString(),
                             style: TextStyle(
                                 color: ColorsUtil.hexColor(0xFF8500),
                                 fontSize: 13),
                           ),
                         ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(15, 5, 0, 10),
+                          child: Text(
+                            "原价价:" +
+                                (double.parse(itemData.zkFinalPrice))
+                                    .toStringAsFixed(2)
+                                    .toString(),
+                            style: TextStyle(
+                                color: ColorsUtil.hexColor(0x666666),
+                                fontSize: 13,
+                                decoration: TextDecoration.lineThrough,
+                                decorationColor: ColorsUtil.hexColor(0x454646)),
+                          ),
+                        ),
                       ],
                     ),
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.all(17),
-                          child: Text(category[index].couponStartTime==null?"":category[index].couponStartTime),
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),

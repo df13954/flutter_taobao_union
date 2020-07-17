@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData> mapData =
-      List();
+  List();
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _getIPAddress() async {
     var content = etController.text;
-    if(null == content) {
+    if (null == content) {
       return;
     }
     var url = 'https://api.sunofbeach.net/shop/search?keyword=$content&page=1';
@@ -80,81 +80,86 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-        controller: etController,
-        decoration: InputDecoration(hintText: "search"),
-      ),
-              )
-            ],
+          Container(
+            margin: EdgeInsets.fromLTRB(12, 15, 12, 10),
+            width: double.infinity,
+
+            child: TextField(
+              style: TextStyle(fontSize: 26),
+              controller: etController,
+              decoration: InputDecoration(hintText: "search"),
+            ),
           ),
           Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: Image.network(mapData[index].pictUrl),
-                        title: Text(mapData[index].title),
-                        subtitle: Text(mapData[index].itemDescription),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              margin: EdgeInsets.fromLTRB(14, 0, 0, 0),
-                              child: Text(
-                                  "付款：" + mapData[index].volume.toString()),
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Image.network(mapData[index].pictUrl),
+                          title: Text(mapData[index].title),
+                          subtitle: Text(mapData[index].itemDescription),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(14, 0, 0, 0),
+                                child: Text(
+                                    "付款：" + mapData[index].volume.toString()),
+                              ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
-                            child: Text("佣金率：" + mapData[index].commissionRate,
-                                style: TextStyle(
-                                  color: Colors.red,
-                                )),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.fromLTRB(14, 5, 0, 0),
-                            child: Text(mapData[index].provcity),
-                          ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(14, 5, 0, 0),
-                            child: Text(mapData[index].levelOneCategoryName),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.fromLTRB(15, 5, 0, 14),
-                            child: Text("店铺：" + mapData[index].shopTitle),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              },
-              itemCount: mapData==null?0:mapData.length,
-            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                              child: Text(
+                                  "佣金率：" + mapData[index].commissionRate,
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                  )),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.fromLTRB(14, 5, 0, 0),
+                              child: Text(mapData[index].provcity),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(14, 5, 0, 0),
+                              child: Text(mapData[index].levelOneCategoryName),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.fromLTRB(15, 5, 0, 14),
+                              child: Text("店铺：" + mapData[index].shopTitle),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
+                itemCount: mapData == null ? 0 : mapData.length,
+              ),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        child: Icon(Icons.
+        add
+        )
+        ,
+      )
+      , // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
