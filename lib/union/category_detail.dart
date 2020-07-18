@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_category_detail_entity.dart';
 import 'package:flutterapp/page_info/ScreenArguments.dart';
+import 'package:flutterapp/page_info/ticket_args.dart';
+import 'package:flutterapp/union/ticket_detail.dart';
 import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
 
@@ -192,6 +194,21 @@ class _MyDetailState extends State<MyCategoryDetail> {
 
   void itemClick(int index) {
     var msg = category[index].title;
-    Toast.show("click $msg", context);
+    //Toast.show("click $msg", context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TicketDetail(),
+        settings: RouteSettings(
+          arguments: TicketArgs(
+            category[index].title,
+            category[index].couponClickUrl == null
+                ? category[index].clickUrl
+                : category[index].couponClickUrl,
+            "https:" + category[index].pictUrl,
+          ),
+        ),
+      ),
+    );
   }
 }

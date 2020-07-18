@@ -7,6 +7,8 @@ import 'package:flutterapp/bean/union_search_entity.dart';
 import 'package:flutterapp/generated/json/union_search_entity_helper.dart';
 import 'package:flutterapp/bean/union_categories_entity.dart';
 import 'package:flutterapp/generated/json/union_categories_entity_helper.dart';
+import 'package:flutterapp/bean/union_ticket_entity.dart';
+import 'package:flutterapp/generated/json/union_ticket_entity_helper.dart';
 import 'package:flutterapp/bean/union_on_sell_entity.dart';
 import 'package:flutterapp/generated/json/union_on_sell_entity_helper.dart';
 import 'package:flutterapp/bean/union_category_detail_entity.dart';
@@ -30,7 +32,11 @@ class JsonConvert<T> {
 			return unionSearchDataTbkDgMaterialOptionalResponseResultListMapDataFromJson(data as UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData, json) as T;			case UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages:
 			return unionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImagesFromJson(data as UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages, json) as T;			case UnionCategoriesEntity:
 			return unionCategoriesEntityFromJson(data as UnionCategoriesEntity, json) as T;			case UnionCategoriesData:
-			return unionCategoriesDataFromJson(data as UnionCategoriesData, json) as T;			case UnionOnSellEntity:
+			return unionCategoriesDataFromJson(data as UnionCategoriesData, json) as T;			case UnionTicketEntity:
+			return unionTicketEntityFromJson(data as UnionTicketEntity, json) as T;			case UnionTicketData:
+			return unionTicketDataFromJson(data as UnionTicketData, json) as T;			case UnionTicketDataTbkTpwdCreateResponse:
+			return unionTicketDataTbkTpwdCreateResponseFromJson(data as UnionTicketDataTbkTpwdCreateResponse, json) as T;			case UnionTicketDataTbkTpwdCreateResponseData:
+			return unionTicketDataTbkTpwdCreateResponseDataFromJson(data as UnionTicketDataTbkTpwdCreateResponseData, json) as T;			case UnionOnSellEntity:
 			return unionOnSellEntityFromJson(data as UnionOnSellEntity, json) as T;			case UnionOnSellData:
 			return unionOnSellDataFromJson(data as UnionOnSellData, json) as T;			case UnionOnSellDataTbkDgOptimusMaterialResponse:
 			return unionOnSellDataTbkDgOptimusMaterialResponseFromJson(data as UnionOnSellDataTbkDgOptimusMaterialResponse, json) as T;			case UnionOnSellDataTbkDgOptimusMaterialResponseResultList:
@@ -52,7 +58,11 @@ class JsonConvert<T> {
 			return unionSearchDataTbkDgMaterialOptionalResponseResultListMapDataToJson(data as UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData);			case UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages:
 			return unionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImagesToJson(data as UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages);			case UnionCategoriesEntity:
 			return unionCategoriesEntityToJson(data as UnionCategoriesEntity);			case UnionCategoriesData:
-			return unionCategoriesDataToJson(data as UnionCategoriesData);			case UnionOnSellEntity:
+			return unionCategoriesDataToJson(data as UnionCategoriesData);			case UnionTicketEntity:
+			return unionTicketEntityToJson(data as UnionTicketEntity);			case UnionTicketData:
+			return unionTicketDataToJson(data as UnionTicketData);			case UnionTicketDataTbkTpwdCreateResponse:
+			return unionTicketDataTbkTpwdCreateResponseToJson(data as UnionTicketDataTbkTpwdCreateResponse);			case UnionTicketDataTbkTpwdCreateResponseData:
+			return unionTicketDataTbkTpwdCreateResponseDataToJson(data as UnionTicketDataTbkTpwdCreateResponseData);			case UnionOnSellEntity:
 			return unionOnSellEntityToJson(data as UnionOnSellEntity);			case UnionOnSellData:
 			return unionOnSellDataToJson(data as UnionOnSellData);			case UnionOnSellDataTbkDgOptimusMaterialResponse:
 			return unionOnSellDataTbkDgOptimusMaterialResponseToJson(data as UnionOnSellDataTbkDgOptimusMaterialResponse);			case UnionOnSellDataTbkDgOptimusMaterialResponseResultList:
@@ -74,7 +84,11 @@ class JsonConvert<T> {
 			return UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData().fromJson(json);			case 'UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages':
 			return UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages().fromJson(json);			case 'UnionCategoriesEntity':
 			return UnionCategoriesEntity().fromJson(json);			case 'UnionCategoriesData':
-			return UnionCategoriesData().fromJson(json);			case 'UnionOnSellEntity':
+			return UnionCategoriesData().fromJson(json);			case 'UnionTicketEntity':
+			return UnionTicketEntity().fromJson(json);			case 'UnionTicketData':
+			return UnionTicketData().fromJson(json);			case 'UnionTicketDataTbkTpwdCreateResponse':
+			return UnionTicketDataTbkTpwdCreateResponse().fromJson(json);			case 'UnionTicketDataTbkTpwdCreateResponseData':
+			return UnionTicketDataTbkTpwdCreateResponseData().fromJson(json);			case 'UnionOnSellEntity':
 			return UnionOnSellEntity().fromJson(json);			case 'UnionOnSellData':
 			return UnionOnSellData().fromJson(json);			case 'UnionOnSellDataTbkDgOptimusMaterialResponse':
 			return UnionOnSellDataTbkDgOptimusMaterialResponse().fromJson(json);			case 'UnionOnSellDataTbkDgOptimusMaterialResponseResultList':
@@ -97,7 +111,11 @@ class JsonConvert<T> {
 			return List<UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData>();			case 'UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages':
 			return List<UnionSearchDataTbkDgMaterialOptionalResponseResultListMapDataSmallImages>();			case 'UnionCategoriesEntity':
 			return List<UnionCategoriesEntity>();			case 'UnionCategoriesData':
-			return List<UnionCategoriesData>();			case 'UnionOnSellEntity':
+			return List<UnionCategoriesData>();			case 'UnionTicketEntity':
+			return List<UnionTicketEntity>();			case 'UnionTicketData':
+			return List<UnionTicketData>();			case 'UnionTicketDataTbkTpwdCreateResponse':
+			return List<UnionTicketDataTbkTpwdCreateResponse>();			case 'UnionTicketDataTbkTpwdCreateResponseData':
+			return List<UnionTicketDataTbkTpwdCreateResponseData>();			case 'UnionOnSellEntity':
 			return List<UnionOnSellEntity>();			case 'UnionOnSellData':
 			return List<UnionOnSellData>();			case 'UnionOnSellDataTbkDgOptimusMaterialResponse':
 			return List<UnionOnSellDataTbkDgOptimusMaterialResponse>();			case 'UnionOnSellDataTbkDgOptimusMaterialResponseResultList':
