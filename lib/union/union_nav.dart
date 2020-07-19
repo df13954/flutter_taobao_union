@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/union/tab_search.dart';
 
 import 'airplay.dart';
-import 'email.dart';
+import 'tab_recommend.dart';
 import 'home.dart';
 
 class BottonWidget extends StatefulWidget {
@@ -25,7 +25,7 @@ class _BottonWidgetState extends State<BottonWidget> {
   // 重写方法 把四个文件添加到lists里面
   @override
   void initState() {
-    lists..add(Home())..add(Email())..add(Pages())..add(Airplay());
+    lists..add(Home())..add(Recommend())..add(Pages())..add(Airplay());
     super.initState();
   }
 
@@ -50,7 +50,7 @@ class _BottonWidgetState extends State<BottonWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.email,
+              Icons.child_friendly,
               color: _Color,
             ),
             title: Text(
@@ -60,11 +60,11 @@ class _BottonWidgetState extends State<BottonWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.pages,
+              Icons.search,
               color: _Color,
             ),
             title: Text(
-              'pages',
+              '搜索',
               style: TextStyle(color: _Color),
             ),
           ),
