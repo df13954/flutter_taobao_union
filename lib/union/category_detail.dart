@@ -83,7 +83,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
     return new Scaffold(
       body: ListView.builder(
           shrinkWrap: true,
-          itemCount: category.length,
+          itemCount: category?.length??0,
           itemBuilder: (context, index) {
             var itemData = category[index];
             return GestureDetector(

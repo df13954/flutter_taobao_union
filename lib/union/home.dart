@@ -60,12 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } catch (exception) {
       result = 'Failed getting IP address';
     }
-
-    // If the widget was removed from the tree while the message was in flight,
-    // we want to discard the reply rather than calling setState to update our
-    // non-existent appearance.
     if (!mounted) return;
-
     setState(() {
       category = tempList;
     });
@@ -76,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
       body: ListView.builder(
           shrinkWrap: true,
-          itemCount: category.length,
+          itemCount: category?.length ?? 0,
           itemBuilder: (context, index) {
             return GestureDetector(
               child: ListTile(
@@ -95,14 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void itemClick(int index) {
     var msg = category[index].title;
-    Toast.show("click $msg", context);
+    //Toast.show("click $msg", context);
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => CategoryDetail(),
-        // Pass the arguments as part of the RouteSettings. The
-        // ExtractArgumentScreen reads the arguments from these
-        // settings.
         settings: RouteSettings(
           arguments: ScreenArguments(
             category[index].id.toString(),

@@ -54,6 +54,7 @@ class _MyTicketState extends State<TicketDetailState> {
     UnionTicketEntity entity;
     String result;
     try {
+      //post request
       HttpClientRequest request = await httpClient.postUrl(Uri.parse(url));
       // post 在领券联盟的接口,使用post 方式
       request.headers.set('content-type', 'application/json');
@@ -80,7 +81,6 @@ class _MyTicketState extends State<TicketDetailState> {
     if (!mounted) return;
     setState(() {
       print("http succeed");
-
       ticketEntity = entity;
     });
   }
@@ -94,9 +94,13 @@ class _MyTicketState extends State<TicketDetailState> {
             padding: EdgeInsets.fromLTRB(10, 15, 10, 30),
             child: AspectRatio(
               aspectRatio: 1 / 1,
-              child: Image.network(
-                arguments.cover,
-                fit: BoxFit.cover,
+              //增加圆角裁剪
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                child: Image.network(
+                  arguments.cover,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
