@@ -5,43 +5,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_search_entity.dart';
 
-class Pages extends StatelessWidget {
-  // This widget is the root of your application.
+import '../page_info/ticket_args.dart';
+import 'ticket_detail.dart';
+
+class TabSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: '搜索宝贝'),
+      home: MySearchPage(title: '搜索宝贝'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class MySearchPage extends StatefulWidget {
+  MySearchPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MySearchPageState createState() => _MySearchPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MySearchPageState extends State<MySearchPage> {
   List<UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData> mapData =
-  List();
+      List();
 
   @override
   void initState() {
     super.initState();
-    _getIPAddress();
+    _getSearchResult();
   }
 
   void _incrementCounter() {
-    _getIPAddress();
+    _getSearchResult();
   }
 
-  _getIPAddress() async {
+  _getSearchResult() async {
+    //获得输入框的文本
     var content = etController.text;
     if (null == content) {
       return;
@@ -59,7 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
         UnionSearchEntity data = UnionSearchEntity().fromJson(jsonMap);
         result = data.data.tbkDgMaterialOptionalResponse.resultList.mapData;
       } else {}
-    } catch (exception) {}
+    } catch (exception) {
+      print("request error");
+    }
 
     if (!mounted) return;
 
@@ -74,8 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Column(
@@ -83,7 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             margin: EdgeInsets.fromLTRB(12, 15, 12, 10),
             width: double.infinity,
-
             child: TextField(
               style: TextStyle(fontSize: 26),
               controller: etController,
@@ -91,10 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return Card(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  child: Card(
                     child: Column(
                       children: <Widget>[
                         ListTile(
@@ -114,8 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             Container(
                               margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
-                              child: Text(
-                                  "佣金率：" + mapData[index].commissionRate,
+                              child: Text("佣金率：" + mapData[index].commissionRate,
                                   style: TextStyle(
                                     color: Colors.red,
                                   )),
@@ -144,22 +145,41 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ],
                     ),
-                  );
-                },
-                itemCount: mapData == null ? 0 : mapData.length,
-              ),
+                  ),
+                  onTap: (){
+                    _itemClick(index);
+                  },
+                );
+              },
+              itemCount: mapData?.length ?? 0,
+
+            ),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.
-        add
-        )
-        ,
-      )
-      , // This trailing comma makes auto-formatting nicer for build methods.
+        child: Icon(Icons.search),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+  _itemClick(var index) {
+    var item = mapData[index];
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TicketDetail(),
+        settings: RouteSettings(
+          arguments: TicketArgs(
+            item.title,
+            item.couponShareUrl == null
+                ? item.url
+                : item.couponShareUrl,
+            "" + item.pictUrl,
+          ),
+        ),
+      ),
     );
   }
 }

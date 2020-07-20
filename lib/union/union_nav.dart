@@ -25,7 +25,7 @@ class _BottonWidgetState extends State<BottonWidget> {
   // 重写方法 把四个文件添加到lists里面
   @override
   void initState() {
-    lists..add(Home())..add(Recommend())..add(Pages())..add(Airplay());
+    lists..add(Home())..add(Recommend())..add(TabSearch())..add(Airplay());
     super.initState();
   }
 
