@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_search_entity.dart';
 
 import '../page_info/ticket_args.dart';
+import '../utils/color_utils.dart';
 import 'ticket_detail.dart';
 
 class TabSearch extends StatelessWidget {
@@ -95,6 +96,7 @@ class _MySearchPageState extends State<MySearchPage> {
             child: ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) {
+                var item = mapData[index];
                 return GestureDetector(
                   child: Card(
                     child: Column(
@@ -102,7 +104,6 @@ class _MySearchPageState extends State<MySearchPage> {
                         ListTile(
                           leading: Image.network(mapData[index].pictUrl),
                           title: Text(mapData[index].title),
-                          subtitle: Text(mapData[index].itemDescription),
                         ),
                         Row(
                           children: <Widget>[
@@ -111,15 +112,16 @@ class _MySearchPageState extends State<MySearchPage> {
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(14, 0, 0, 0),
                                 child: Text(
-                                    "付款：" + mapData[index].volume.toString()),
+                                    mapData[index].volume.toString() + "人付款"),
                               ),
                             ),
                             Container(
                               margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
-                              child: Text("佣金率：" + mapData[index].commissionRate,
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                  )),
+                              child:
+                                  Text("优惠：" + mapData[index].couponAmount.toString()+"元",
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      )),
                             )
                           ],
                         ),
@@ -140,19 +142,46 @@ class _MySearchPageState extends State<MySearchPage> {
                             Container(
                               margin: EdgeInsets.fromLTRB(15, 5, 0, 14),
                               child: Text("店铺：" + mapData[index].shopTitle),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(5, 5, 0, 10),
+                              child: Text(
+                                "¥" +
+                                    (double.parse(item.zkFinalPrice) -
+                                        double.parse(item.couponAmount))
+                                        .toStringAsFixed(2)
+                                        .toString(),
+                                style: TextStyle(
+                                    color: ColorsUtil.hexColor(0xFF8500),
+                                    fontSize: 15),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(2, 5, 0, 10),
+                              child: Text(
+                                "原价价:" +
+                                    (double.parse(item.zkFinalPrice))
+                                        .toStringAsFixed(2)
+                                        .toString(),
+                                style: TextStyle(
+                                    color: ColorsUtil.hexColor(0x666666),
+                                    fontSize: 12,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationColor:
+                                    ColorsUtil.hexColor(0x454646)),
+                              ),
                             )
                           ],
                         )
                       ],
                     ),
                   ),
-                  onTap: (){
+                  onTap: () {
                     _itemClick(index);
                   },
                 );
               },
               itemCount: mapData?.length ?? 0,
-
             ),
           )
         ],
@@ -164,6 +193,7 @@ class _MySearchPageState extends State<MySearchPage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
   _itemClick(var index) {
     var item = mapData[index];
     Navigator.push(
@@ -173,9 +203,7 @@ class _MySearchPageState extends State<MySearchPage> {
         settings: RouteSettings(
           arguments: TicketArgs(
             item.title,
-            item.couponShareUrl == null
-                ? item.url
-                : item.couponShareUrl,
+            item.couponShareUrl == null ? item.url : item.couponShareUrl,
             "" + item.pictUrl,
           ),
         ),
