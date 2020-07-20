@@ -96,8 +96,12 @@ class _MyPreferentialPageState extends State<MyPreferentialPage> {
     if (!mounted) return;
     setState(() {
       subList = tempList;
+      scrollController.animateTo(.0, duration: Duration(milliseconds: 300), curve: Curves.ease);
     });
   }
+
+  ScrollController scrollController = ScrollController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -136,6 +140,7 @@ class _MyPreferentialPageState extends State<MyPreferentialPage> {
             child: Container(
               margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: ListView.builder(
+                controller: scrollController,
                 shrinkWrap: true,
                 itemCount: subList == null ? "" : subList.length,
                 itemBuilder: (context, index) {

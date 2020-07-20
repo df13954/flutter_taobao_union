@@ -38,6 +38,7 @@ class MyCategoryDetail extends StatefulWidget {
 class _MyDetailState extends State<MyCategoryDetail> {
   ScreenArguments arguments;
 
+
   _MyDetailState(ScreenArguments arg) {
     this.arguments = arg;
     print("state arg: " + arg.id);
