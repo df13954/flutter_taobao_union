@@ -13,6 +13,10 @@ import 'package:flutterapp/bean/union_on_sell_entity.dart';
 import 'package:flutterapp/generated/json/union_on_sell_entity_helper.dart';
 import 'package:flutterapp/bean/union_category_detail_entity.dart';
 import 'package:flutterapp/generated/json/union_category_detail_entity_helper.dart';
+import 'package:flutterapp/bean/union_list_entity.dart';
+import 'package:flutterapp/generated/json/union_list_entity_helper.dart';
+import 'package:flutterapp/bean/union_detail_entity.dart';
+import 'package:flutterapp/generated/json/union_detail_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -45,7 +49,14 @@ class JsonConvert<T> {
 			return unionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImagesFromJson(data as UnionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImages, json) as T;			case UnionCategoryDetailEntity:
 			return unionCategoryDetailEntityFromJson(data as UnionCategoryDetailEntity, json) as T;			case UnionCategoryDetailData:
 			return unionCategoryDetailDataFromJson(data as UnionCategoryDetailData, json) as T;			case UnionCategoryDetailDataSmallImages:
-			return unionCategoryDetailDataSmallImagesFromJson(data as UnionCategoryDetailDataSmallImages, json) as T;    }
+			return unionCategoryDetailDataSmallImagesFromJson(data as UnionCategoryDetailDataSmallImages, json) as T;			case UnionListEntity:
+			return unionListEntityFromJson(data as UnionListEntity, json) as T;			case UnionListData:
+			return unionListDataFromJson(data as UnionListData, json) as T;			case UnionDetailEntity:
+			return unionDetailEntityFromJson(data as UnionDetailEntity, json) as T;			case UnionDetailData:
+			return unionDetailDataFromJson(data as UnionDetailData, json) as T;			case UnionDetailDataTbkUatmFavoritesItemGetResponse:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseFromJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponse, json) as T;			case UnionDetailDataTbkUatmFavoritesItemGetResponseResults:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseResultsFromJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponseResults, json) as T;			case UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItemFromJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem, json) as T;    }
     return data as T;
   }
 
@@ -71,7 +82,14 @@ class JsonConvert<T> {
 			return unionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImagesToJson(data as UnionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImages);			case UnionCategoryDetailEntity:
 			return unionCategoryDetailEntityToJson(data as UnionCategoryDetailEntity);			case UnionCategoryDetailData:
 			return unionCategoryDetailDataToJson(data as UnionCategoryDetailData);			case UnionCategoryDetailDataSmallImages:
-			return unionCategoryDetailDataSmallImagesToJson(data as UnionCategoryDetailDataSmallImages);    }
+			return unionCategoryDetailDataSmallImagesToJson(data as UnionCategoryDetailDataSmallImages);			case UnionListEntity:
+			return unionListEntityToJson(data as UnionListEntity);			case UnionListData:
+			return unionListDataToJson(data as UnionListData);			case UnionDetailEntity:
+			return unionDetailEntityToJson(data as UnionDetailEntity);			case UnionDetailData:
+			return unionDetailDataToJson(data as UnionDetailData);			case UnionDetailDataTbkUatmFavoritesItemGetResponse:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseToJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponse);			case UnionDetailDataTbkUatmFavoritesItemGetResponseResults:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseResultsToJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponseResults);			case UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem:
+			return unionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItemToJson(data as UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem);    }
     return data as T;
   }
   //Go back to a single instance by type
@@ -97,7 +115,14 @@ class JsonConvert<T> {
 			return UnionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImages().fromJson(json);			case 'UnionCategoryDetailEntity':
 			return UnionCategoryDetailEntity().fromJson(json);			case 'UnionCategoryDetailData':
 			return UnionCategoryDetailData().fromJson(json);			case 'UnionCategoryDetailDataSmallImages':
-			return UnionCategoryDetailDataSmallImages().fromJson(json);    }
+			return UnionCategoryDetailDataSmallImages().fromJson(json);			case 'UnionListEntity':
+			return UnionListEntity().fromJson(json);			case 'UnionListData':
+			return UnionListData().fromJson(json);			case 'UnionDetailEntity':
+			return UnionDetailEntity().fromJson(json);			case 'UnionDetailData':
+			return UnionDetailData().fromJson(json);			case 'UnionDetailDataTbkUatmFavoritesItemGetResponse':
+			return UnionDetailDataTbkUatmFavoritesItemGetResponse().fromJson(json);			case 'UnionDetailDataTbkUatmFavoritesItemGetResponseResults':
+			return UnionDetailDataTbkUatmFavoritesItemGetResponseResults().fromJson(json);			case 'UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem':
+			return UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem().fromJson(json);    }
     return null;
   }
 
@@ -124,7 +149,14 @@ class JsonConvert<T> {
 			return List<UnionOnSellDataTbkDgOptimusMaterialResponseResultListMapDataSmallImages>();			case 'UnionCategoryDetailEntity':
 			return List<UnionCategoryDetailEntity>();			case 'UnionCategoryDetailData':
 			return List<UnionCategoryDetailData>();			case 'UnionCategoryDetailDataSmallImages':
-			return List<UnionCategoryDetailDataSmallImages>();    }
+			return List<UnionCategoryDetailDataSmallImages>();			case 'UnionListEntity':
+			return List<UnionListEntity>();			case 'UnionListData':
+			return List<UnionListData>();			case 'UnionDetailEntity':
+			return List<UnionDetailEntity>();			case 'UnionDetailData':
+			return List<UnionDetailData>();			case 'UnionDetailDataTbkUatmFavoritesItemGetResponse':
+			return List<UnionDetailDataTbkUatmFavoritesItemGetResponse>();			case 'UnionDetailDataTbkUatmFavoritesItemGetResponseResults':
+			return List<UnionDetailDataTbkUatmFavoritesItemGetResponseResults>();			case 'UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem':
+			return List<UnionDetailDataTbkUatmFavoritesItemGetResponseResultsUatmTbkItem>();    }
     return null;
   }
 

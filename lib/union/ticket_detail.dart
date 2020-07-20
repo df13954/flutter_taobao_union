@@ -62,12 +62,13 @@ class _MyTicketState extends State<TicketDetailState> {
       request.add(utf8.encode(json.encode(jsonMap)));
 
       var response = await request.close();
-      print("http------>>");
       print(response.headers);
       print(response);
 
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(utf8.decoder).join();
+        print("http------>>"+json);
+
         Map<String, dynamic> map = jsonDecode(json);
         entity = UnionTicketEntity().fromJson(map);
       } else {
