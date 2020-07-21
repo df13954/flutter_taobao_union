@@ -29,7 +29,9 @@ class MySearchPage extends StatefulWidget {
   _MySearchPageState createState() => _MySearchPageState();
 }
 
-class _MySearchPageState extends State<MySearchPage> {
+class _MySearchPageState extends State<MySearchPage> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
   List<UnionSearchDataTbkDgMaterialOptionalResponseResultListMapData> mapData =
       List();
 

@@ -30,7 +30,7 @@ android {
         release {
             keyAlias 'android'
             keyPassword 'android'
-            storeFile file('/Users/os/flutter/demo/flutter_app/android/sign.jks')
+            storeFile file('../sign.jks')
             storePassword 'android'
         }
     }

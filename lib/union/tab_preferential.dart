@@ -27,7 +27,7 @@ class MyPreferentialPage extends StatefulWidget {
   _MyPreferentialPageState createState() => new _MyPreferentialPageState();
 }
 
-class _MyPreferentialPageState extends State<MyPreferentialPage> {
+class _MyPreferentialPageState extends State<MyPreferentialPage> with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -243,5 +243,8 @@ class _MyPreferentialPageState extends State<MyPreferentialPage> {
     var item = subList[index];
 
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
 }
