@@ -7,7 +7,7 @@ import 'package:flutterapp/bean/union_ticket_entity.dart';
 import 'package:flutterapp/page_info/ticket_args.dart';
 import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
-
+import 'package:flutter/services.dart';
 /// 生成淘宝口令页面
 class TicketDetail extends StatelessWidget {
   @override
@@ -127,27 +127,33 @@ class _MyTicketState extends State<TicketDetailState> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(20),
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                decoration: BoxDecoration(
-                  // 边色与边宽度
-                  color: ColorsUtil.hexColor(0xFF8500),
-                  // 底色
-                  shape: BoxShape.rectangle,
-                  // 默认值也是矩形
-                  borderRadius: new BorderRadius.circular((5.0)), // 圆角度
-                ),
-                child: Text(
-                  "复制口令",
-                  style: TextStyle(
-                      fontSize: 25, color: ColorsUtil.hexColor(0xffffff)),
+          GestureDetector(
+            child: Container(
+              margin: EdgeInsets.all(20),
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+                  decoration: BoxDecoration(
+                    // 边色与边宽度
+                    color: ColorsUtil.hexColor(0xFF8500),
+                    // 底色
+                    shape: BoxShape.rectangle,
+                    // 默认值也是矩形
+                    borderRadius: new BorderRadius.circular((5.0)), // 圆角度
+                  ),
+                  child: Text(
+                    "复制口令",
+                    style: TextStyle(
+                        fontSize: 25, color: ColorsUtil.hexColor(0xffffff)),
+                  ),
                 ),
               ),
             ),
+            onTap: (){
+              Clipboard.setData(ClipboardData(text: ticketEntity.data.tbkTpwdCreateResponse.data.model));
+              Toast.show("已经复制到粘贴板", context);
+            },
           ),
         ],
       ),
