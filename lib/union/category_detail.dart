@@ -38,7 +38,6 @@ class MyCategoryDetail extends StatefulWidget {
 class _MyDetailState extends State<MyCategoryDetail> {
   ScreenArguments arguments;
 
-
   _MyDetailState(ScreenArguments arg) {
     this.arguments = arg;
     print("state arg: " + arg.id);
@@ -67,7 +66,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
         tempList = entity.data;
       } else {
         result =
-            'Error getting IP address:\nHttp status ${response.statusCode}';
+        'Error getting IP address:\nHttp status ${response.statusCode}';
       }
     } catch (exception) {
       result = 'Failed getting IP address';
@@ -84,7 +83,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
     return new Scaffold(
       body: ListView.builder(
           shrinkWrap: true,
-          itemCount: category?.length??0,
+          itemCount: category?.length ?? 0,
           itemBuilder: (context, index) {
             var itemData = category[index];
             return GestureDetector(
@@ -106,14 +105,16 @@ class _MyDetailState extends State<MyCategoryDetail> {
                       child: ListTile(
                         title: Text(
                           category[index].title,
+                          maxLines: 2,
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: ColorsUtil.hexColor(0x000814)),
                         ),
                         subtitle: Text(
                           category[index].itemDescription,
+                          maxLines: 2,
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: ColorsUtil.hexColor(0x666666)),
                         ),
                       ),
@@ -135,7 +136,9 @@ class _MyDetailState extends State<MyCategoryDetail> {
                               ),
                             ),
                           ),
-                          color: ColorsUtil.hexColor(0xFD4A43),
+                          decoration: BoxDecoration(
+                              color: ColorsUtil.hexColor(0xFD4A43),
+                              borderRadius: BorderRadius.circular(5)),
                         ),
                       ],
                     ),
@@ -156,7 +159,7 @@ class _MyDetailState extends State<MyCategoryDetail> {
                           child: Text(
                             "券后价:" +
                                 (double.parse(itemData.zkFinalPrice) -
-                                        itemData.couponAmount)
+                                    itemData.couponAmount)
                                     .toStringAsFixed(2)
                                     .toString(),
                             style: TextStyle(

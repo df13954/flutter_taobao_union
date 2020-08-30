@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/bean/union_categories_entity.dart';
 import 'package:flutterapp/page_info/ScreenArguments.dart';
+import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
 
 import 'category_detail.dart';
@@ -28,12 +29,27 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMixin {
+class _MyHomePageState extends State<MyHomePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
     _getUnionCategory();
   }
+
+  var imgList = [
+    "images/ic_recomd.png",
+    "images/ic_food.png",
+    "images/ic_male.png",
+    "images/ic_female.png",
+    "images/ic_underwear.png",
+    "images/ic_kids.png",
+    "images/ic_digital.png",
+    "images/ic_cosmetics.png",
+    "images/ic_outdoors.png",
+    "images/ic_shoes.png",
+    "images/ic_furniture.png",
+  ];
 
   var baseUrl = 'https://api.sunofbeach.net/shop/discovery/categories';
 
@@ -55,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
         tempList = entity.data;
       } else {
         result =
-            'Error getting IP address:\nHttp status ${response.statusCode}';
+        'Error getting IP address:\nHttp status ${response.statusCode}';
       }
     } catch (exception) {
       result = 'Failed getting IP address';
@@ -73,10 +89,32 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
           shrinkWrap: true,
           itemCount: category?.length ?? 0,
           itemBuilder: (context, index) {
+            if (category == null) {
+              return Text("");
+            }
+            var item = category[index];
             return GestureDetector(
-              child: ListTile(
-                title: Text("id->  " + category[index].id.toString()),
-                subtitle: Text(category[index].title),
+              child: Card(
+                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                child: Row(
+                  children: <Widget>[
+                    //图片
+                    Image.asset(
+                      imgList[index],
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: Text(
+                        item.title,
+                        style: TextStyle(
+                            color: ColorsUtil.hexColor(0x000814), fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
               ),
               onTap: () {
                 setState(() {
@@ -88,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> with AutomaticKeepAliveClientMi
     );
   }
 
+  //点击事件部分
   void itemClick(int index) {
     var msg = category[index].title;
     //Toast.show("click $msg", context);
