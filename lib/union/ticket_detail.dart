@@ -8,6 +8,7 @@ import 'package:flutterapp/page_info/ticket_args.dart';
 import 'package:flutterapp/utils/color_utils.dart';
 import 'package:toast/toast.dart';
 import 'package:flutter/services.dart';
+
 /// 生成淘宝口令页面
 class TicketDetail extends StatelessWidget {
   @override
@@ -67,7 +68,7 @@ class _MyTicketState extends State<TicketDetailState> {
 
       if (response.statusCode == HttpStatus.OK) {
         var json = await response.transform(utf8.decoder).join();
-        print("http------>>"+json);
+        print("http------>>" + json);
 
         Map<String, dynamic> map = jsonDecode(json);
         entity = UnionTicketEntity().fromJson(map);
@@ -108,9 +109,10 @@ class _MyTicketState extends State<TicketDetailState> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                border: new Border.all(color: Color(0xFF9E9E9E), width: 1),
+                border: new Border.all(color: Color(0xFF9E9E9E), width: 0.2),
                 // 边色与边宽度
                 color: Colors.white,
                 // 底色
@@ -123,7 +125,7 @@ class _MyTicketState extends State<TicketDetailState> {
                     ? ""
                     : ticketEntity.data.tbkTpwdCreateResponse.data.model,
                 style: TextStyle(
-                    fontSize: 25, color: ColorsUtil.hexColor(0x666666)),
+                    fontSize: 14, color: ColorsUtil.hexColor(0x666666)),
               ),
             ),
           ),
@@ -150,8 +152,9 @@ class _MyTicketState extends State<TicketDetailState> {
                 ),
               ),
             ),
-            onTap: (){
-              Clipboard.setData(ClipboardData(text: ticketEntity.data.tbkTpwdCreateResponse.data.model));
+            onTap: () {
+              Clipboard.setData(ClipboardData(
+                  text: ticketEntity.data.tbkTpwdCreateResponse.data.model));
               Toast.show("已经复制到粘贴板", context);
             },
           ),
